@@ -1,6 +1,7 @@
 services:
   db:
     image: mariadb:11.4
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: ordersdb
@@ -10,6 +11,12 @@ services:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mariadb-admin", "ping", "-h", "localhost", "-uroot", "-prootpassword" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s # Long-Running Services (Databases or Search Engines)
 
   adminer:
     image: adminer
@@ -17,7 +24,8 @@ services:
     ports:
       - "8888:8080" # Access Adminer on http://localhost:8888
     depends_on:
-      - db
+      db: # Ensure Adminer starts after the database
+        condition: service_healthy
 
   meilisearch:
     image: getmeili/meilisearch:v1.12
@@ -26,6 +34,15 @@ services:
       - ./data.ms:/data.ms # Persists Meilisearch data
     ports:
       - "7700:7700"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:7700/health" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 20s # Long-Running Services (Databases or Search Engines)
+    depends_on:
+      db: # Optional: Ensure MeiliSearch starts *after* the database
+        condition: service_healthy
 
   redis:
     image: redis:7.2.4
@@ -35,14 +52,24 @@ services:
     environment:
       REDIS_PORT: 6379
       ALLOW_EMPTY_PASSWORD: "yes" # For dev only! Secure in prod.
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
 
   app:
     build: working
-    image: order-service:latest          # produced by Jib
+    image: order-service:latest # Built using Jib or similar
+    restart: always
     depends_on:
-      - db
-      - redis
-      - meilisearch
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      meilisearch:
+        condition: service_healthy
     environment:
       SPRING_DATASOURCE_URL: jdbc:mariadb://db:3306/ordersdb
       SPRING_DATASOURCE_USERNAME: ordersapp

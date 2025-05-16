@@ -114,6 +114,12 @@ When running ./build-and-deploy.sh, you should see:
 
 ## Cleanup: Stopping the Services
 
+If you want to stop the containers, you can use:
+
+   ```sh
+    docker compose stop
+   ```
+
 If you want to stop the containers and clean up the Docker Compose setup, you can use:
 
    ```sh
