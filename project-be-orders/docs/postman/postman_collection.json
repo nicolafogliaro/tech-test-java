@@ -1,0 +1,1096 @@
+{
+	"info": {
+		"_postman_id": "4feb1b82-bcc6-4a85-8483-4054950ba57b",
+		"name": "OpenAPI definition Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16725729"
+	},
+	"item": [
+		{
+			"name": "api/v1",
+			"item": [
+				{
+					"name": "products",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "Get product by ID",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/products/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"products",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "20275314",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Retrieve a specific product by providing its ID."
+									},
+									"response": [
+										{
+											"name": "Product found and details retrieved successfully.",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/products/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"products",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "20275314",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": 1,\n  \"name\": \"Laptop\",\n  \"description\": \"A high-performance laptop with 16GB RAM.\",\n  \"price\": 999.99,\n  \"stockQuantity\": 100,\n  \"createdAt\": \"2025-05-14T13:45:30\",\n  \"updatedAt\": \"2025-05-14T14:15:22\"\n}"
+										},
+										{
+											"name": "Product with specified ID not found.",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/products/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"products",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "20275314",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": 1,\n  \"name\": \"Laptop\",\n  \"description\": \"A high-performance laptop with 16GB RAM.\",\n  \"price\": 999.99,\n  \"stockQuantity\": 100,\n  \"createdAt\": \"2025-05-14T13:45:30\",\n  \"updatedAt\": \"2025-05-14T14:15:22\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Update a product",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"Advanced Tablet\",\n  \"description\": \"A more advanced and lightweight tablet with extra features.\",\n  \"price\": 599.99,\n  \"stockQuantity\": 50\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/products/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"products",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "20275314",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Update the details of an existing product."
+									},
+									"response": [
+										{
+											"name": "Product updated successfully.",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"name\": \"Advanced Tablet\",\n  \"description\": \"A more advanced and lightweight tablet with extra features.\",\n  \"price\": 599.99,\n  \"stockQuantity\": 50\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/products/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"products",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "20275314",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": 1,\n  \"name\": \"Laptop\",\n  \"description\": \"A high-performance laptop with 16GB RAM.\",\n  \"price\": 999.99,\n  \"stockQuantity\": 100,\n  \"createdAt\": \"2025-05-14T13:45:30\",\n  \"updatedAt\": \"2025-05-14T14:15:22\"\n}"
+										},
+										{
+											"name": "Product with specified ID not found.",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"name\": \"Advanced Tablet\",\n  \"description\": \"A more advanced and lightweight tablet with extra features.\",\n  \"price\": 599.99,\n  \"stockQuantity\": 50\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/products/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"products",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "20275314",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": 1,\n  \"name\": \"Laptop\",\n  \"description\": \"A high-performance laptop with 16GB RAM.\",\n  \"price\": 999.99,\n  \"stockQuantity\": 100,\n  \"createdAt\": \"2025-05-14T13:45:30\",\n  \"updatedAt\": \"2025-05-14T14:15:22\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Delete a product",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/products/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"products",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "20275314",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Delete a product from the system."
+									},
+									"response": [
+										{
+											"name": "Product deleted successfully.",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/products/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"products",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "20275314",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "No Content",
+											"code": 204,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Product with specified ID not found.",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/products/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"products",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "20275314",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Get all products",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/products",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"products"
+									]
+								},
+								"description": "Retrieve all products in the system."
+							},
+							"response": [
+								{
+									"name": "List of all products retrieved successfully.",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/products",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"products"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Laptop\",\n    \"description\": \"A high-performance laptop with 16GB RAM.\",\n    \"price\": 999.99,\n    \"stockQuantity\": 100,\n    \"createdAt\": \"2025-05-14T13:45:30\",\n    \"updatedAt\": \"2025-05-14T14:15:22\"\n  },\n  {\n    \"id\": 1,\n    \"name\": \"Laptop\",\n    \"description\": \"A high-performance laptop with 16GB RAM.\",\n    \"price\": 999.99,\n    \"stockQuantity\": 100,\n    \"createdAt\": \"2025-05-14T13:45:30\",\n    \"updatedAt\": \"2025-05-14T14:15:22\"\n  }\n]"
+								}
+							]
+						},
+						{
+							"name": "Create a product",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Tablet\",\n  \"price\": 499.99,\n  \"stockQuantity\": 50,\n  \"description\": \"A lightweight and portable tablet.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/products",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"products"
+									]
+								},
+								"description": "Create a new product in the system."
+							},
+							"response": [
+								{
+									"name": "Product created successfully.",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"Tablet\",\n  \"price\": 499.99,\n  \"stockQuantity\": 50,\n  \"description\": \"A lightweight and portable tablet.\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/products",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"products"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 1,\n  \"name\": \"Laptop\",\n  \"description\": \"A high-performance laptop with 16GB RAM.\",\n  \"price\": 999.99,\n  \"stockQuantity\": 100,\n  \"createdAt\": \"2025-05-14T13:45:30\",\n  \"updatedAt\": \"2025-05-14T14:15:22\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "orders",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "get Order By Id",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/orders/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"orders",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "20275314",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/orders/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"orders",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "20275314",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": 1001,\n  \"customerId\": 5001,\n  \"description\": \"Priority shipment for VIP customer\",\n  \"status\": \"PROCESSING\",\n  \"totalAmount\": 129.99,\n  \"items\": [\n    {\n      \"id\": 101,\n      \"productId\": 789,\n      \"productName\": \"Wireless Mouse\",\n      \"quantity\": 2,\n      \"subtotalPrice\": 51.98,\n      \"unitPrice\": 25.99,\n      \"productDescription\": \"Ergonomic wireless optical mouse\"\n    },\n    {\n      \"id\": 101,\n      \"productId\": 789,\n      \"productName\": \"Wireless Mouse\",\n      \"quantity\": 2,\n      \"subtotalPrice\": 51.98,\n      \"unitPrice\": 25.99,\n      \"productDescription\": \"Ergonomic wireless optical mouse\"\n    }\n  ],\n  \"createdAt\": \"2025-05-14T13:45:30\",\n  \"updatedAt\": \"2025-05-14T14:15:22\"\n}"
+										}
+									]
+								},
+								{
+									"name": "update Order",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"customerId\": 456,\n  \"orderDescription\": \"Updated order: please ensure gift wrapping for item X.\",\n  \"status\": \"PROCESSING\",\n  \"items\": [\n    {\n      \"productId\": 101,\n      \"quantity\": 2\n    },\n    {\n      \"productId\": 101,\n      \"quantity\": 2\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/orders/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"orders",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "20275314",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"customerId\": 456,\n  \"orderDescription\": \"Updated order: please ensure gift wrapping for item X.\",\n  \"status\": \"PROCESSING\",\n  \"items\": [\n    {\n      \"productId\": 101,\n      \"quantity\": 2\n    },\n    {\n      \"productId\": 101,\n      \"quantity\": 2\n    }\n  ]\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/orders/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"orders",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "20275314",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": 1001,\n  \"customerId\": 5001,\n  \"description\": \"Priority shipment for VIP customer\",\n  \"status\": \"PROCESSING\",\n  \"totalAmount\": 129.99,\n  \"items\": [\n    {\n      \"id\": 101,\n      \"productId\": 789,\n      \"productName\": \"Wireless Mouse\",\n      \"quantity\": 2,\n      \"subtotalPrice\": 51.98,\n      \"unitPrice\": 25.99,\n      \"productDescription\": \"Ergonomic wireless optical mouse\"\n    },\n    {\n      \"id\": 101,\n      \"productId\": 789,\n      \"productName\": \"Wireless Mouse\",\n      \"quantity\": 2,\n      \"subtotalPrice\": 51.98,\n      \"unitPrice\": 25.99,\n      \"productDescription\": \"Ergonomic wireless optical mouse\"\n    }\n  ],\n  \"createdAt\": \"2025-05-14T13:45:30\",\n  \"updatedAt\": \"2025-05-14T14:15:22\"\n}"
+										}
+									]
+								},
+								{
+									"name": "delete Order",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/orders/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"orders",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "20275314",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "No Content",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/orders/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"orders",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "20275314",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "No Content",
+											"code": 204,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "search",
+							"item": [
+								{
+									"name": "search Orders",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"customerId\": 12345,\n  \"query\": \"IPhone\",\n  \"startDate\": \"2025-01-01\",\n  \"endDate\": \"2025-12-31\",\n  \"page\": 0,\n  \"size\": 10,\n  \"sort\": \"createdAt\",\n  \"direction\": \"asc\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/orders/search",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"orders",
+												"search"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"customerId\": 12345,\n  \"query\": \"IPhone\",\n  \"startDate\": \"2025-01-01\",\n  \"endDate\": \"2025-12-31\",\n  \"page\": 0,\n  \"size\": 10,\n  \"sort\": \"createdAt\",\n  \"direction\": \"asc\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/orders/search",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"orders",
+														"search"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"totalElements\": -75561794,\n  \"totalPages\": 43264594,\n  \"pageable\": {\n    \"paged\": true,\n    \"pageNumber\": 78703430,\n    \"pageSize\": -44859171,\n    \"offset\": -67703718,\n    \"sort\": {\n      \"sorted\": true,\n      \"empty\": false,\n      \"unsorted\": true\n    },\n    \"unpaged\": true\n  },\n  \"size\": -36057270,\n  \"content\": [\n    {\n      \"id\": 1001,\n      \"customerId\": 5001,\n      \"description\": \"Priority shipment for VIP customer\",\n      \"status\": \"PROCESSING\",\n      \"totalAmount\": 129.99,\n      \"items\": [\n        {\n          \"id\": 101,\n          \"productId\": 789,\n          \"productName\": \"Wireless Mouse\",\n          \"quantity\": 2,\n          \"subtotalPrice\": 51.98,\n          \"unitPrice\": 25.99,\n          \"productDescription\": \"Ergonomic wireless optical mouse\"\n        },\n        {\n          \"id\": 101,\n          \"productId\": 789,\n          \"productName\": \"Wireless Mouse\",\n          \"quantity\": 2,\n          \"subtotalPrice\": 51.98,\n          \"unitPrice\": 25.99,\n          \"productDescription\": \"Ergonomic wireless optical mouse\"\n        }\n      ],\n      \"createdAt\": \"2025-05-14T13:45:30\",\n      \"updatedAt\": \"2025-05-14T14:15:22\"\n    },\n    {\n      \"id\": 1001,\n      \"customerId\": 5001,\n      \"description\": \"Priority shipment for VIP customer\",\n      \"status\": \"PROCESSING\",\n      \"totalAmount\": 129.99,\n      \"items\": [\n        {\n          \"id\": 101,\n          \"productId\": 789,\n          \"productName\": \"Wireless Mouse\",\n          \"quantity\": 2,\n          \"subtotalPrice\": 51.98,\n          \"unitPrice\": 25.99,\n          \"productDescription\": \"Ergonomic wireless optical mouse\"\n        },\n        {\n          \"id\": 101,\n          \"productId\": 789,\n          \"productName\": \"Wireless Mouse\",\n          \"quantity\": 2,\n          \"subtotalPrice\": 51.98,\n          \"unitPrice\": 25.99,\n          \"productDescription\": \"Ergonomic wireless optical mouse\"\n        }\n      ],\n      \"createdAt\": \"2025-05-14T13:45:30\",\n      \"updatedAt\": \"2025-05-14T14:15:22\"\n    }\n  ],\n  \"number\": -45961422,\n  \"sort\": {\n    \"sorted\": false,\n    \"empty\": true,\n    \"unsorted\": true\n  },\n  \"numberOfElements\": 77596419,\n  \"first\": false,\n  \"last\": true,\n  \"empty\": false\n}"
+										}
+									]
+								},
+								{
+									"name": "search Orders With Search Engine",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"customerId\": 12345,\n  \"query\": \"IPhone\",\n  \"startDate\": \"2025-01-01\",\n  \"endDate\": \"2025-12-31\",\n  \"page\": 0,\n  \"size\": 10,\n  \"sort\": \"createdAt\",\n  \"direction\": \"asc\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/orders/search/engine",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"orders",
+												"search",
+												"engine"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"customerId\": 12345,\n  \"query\": \"IPhone\",\n  \"startDate\": \"2025-01-01\",\n  \"endDate\": \"2025-12-31\",\n  \"page\": 0,\n  \"size\": 10,\n  \"sort\": \"createdAt\",\n  \"direction\": \"asc\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/orders/search/engine",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"orders",
+														"search",
+														"engine"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"totalElements\": -75561794,\n  \"totalPages\": 43264594,\n  \"pageable\": {\n    \"paged\": true,\n    \"pageNumber\": 78703430,\n    \"pageSize\": -44859171,\n    \"offset\": -67703718,\n    \"sort\": {\n      \"sorted\": true,\n      \"empty\": false,\n      \"unsorted\": true\n    },\n    \"unpaged\": true\n  },\n  \"size\": -36057270,\n  \"content\": [\n    {\n      \"id\": 1001,\n      \"customerId\": 5001,\n      \"description\": \"Priority shipment for VIP customer\",\n      \"status\": \"PROCESSING\",\n      \"totalAmount\": 129.99,\n      \"items\": [\n        {\n          \"id\": 101,\n          \"productId\": 789,\n          \"productName\": \"Wireless Mouse\",\n          \"quantity\": 2,\n          \"subtotalPrice\": 51.98,\n          \"unitPrice\": 25.99,\n          \"productDescription\": \"Ergonomic wireless optical mouse\"\n        },\n        {\n          \"id\": 101,\n          \"productId\": 789,\n          \"productName\": \"Wireless Mouse\",\n          \"quantity\": 2,\n          \"subtotalPrice\": 51.98,\n          \"unitPrice\": 25.99,\n          \"productDescription\": \"Ergonomic wireless optical mouse\"\n        }\n      ],\n      \"createdAt\": \"2025-05-14T13:45:30\",\n      \"updatedAt\": \"2025-05-14T14:15:22\"\n    },\n    {\n      \"id\": 1001,\n      \"customerId\": 5001,\n      \"description\": \"Priority shipment for VIP customer\",\n      \"status\": \"PROCESSING\",\n      \"totalAmount\": 129.99,\n      \"items\": [\n        {\n          \"id\": 101,\n          \"productId\": 789,\n          \"productName\": \"Wireless Mouse\",\n          \"quantity\": 2,\n          \"subtotalPrice\": 51.98,\n          \"unitPrice\": 25.99,\n          \"productDescription\": \"Ergonomic wireless optical mouse\"\n        },\n        {\n          \"id\": 101,\n          \"productId\": 789,\n          \"productName\": \"Wireless Mouse\",\n          \"quantity\": 2,\n          \"subtotalPrice\": 51.98,\n          \"unitPrice\": 25.99,\n          \"productDescription\": \"Ergonomic wireless optical mouse\"\n        }\n      ],\n      \"createdAt\": \"2025-05-14T13:45:30\",\n      \"updatedAt\": \"2025-05-14T14:15:22\"\n    }\n  ],\n  \"number\": -45961422,\n  \"sort\": {\n    \"sorted\": false,\n    \"empty\": true,\n    \"unsorted\": true\n  },\n  \"numberOfElements\": 77596419,\n  \"first\": false,\n  \"last\": true,\n  \"empty\": false\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "create Order",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"customerId\": 1001,\n  \"items\": [\n    {\n      \"productId\": 101,\n      \"quantity\": 2\n    }\n  ],\n  \"orderDescription\": \"Rush delivery requested\",\n  \"status\": \"PENDING\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/orders",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"orders"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Created",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"customerId\": 1001,\n  \"items\": [\n    {\n      \"productId\": 101,\n      \"quantity\": 2\n    }\n  ],\n  \"orderDescription\": \"Rush delivery requested\",\n  \"status\": \"PENDING\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/orders",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"orders"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 1001,\n  \"customerId\": 5001,\n  \"description\": \"Priority shipment for VIP customer\",\n  \"status\": \"PROCESSING\",\n  \"totalAmount\": 129.99,\n  \"items\": [\n    {\n      \"id\": 101,\n      \"productId\": 789,\n      \"productName\": \"Wireless Mouse\",\n      \"quantity\": 2,\n      \"subtotalPrice\": 51.98,\n      \"unitPrice\": 25.99,\n      \"productDescription\": \"Ergonomic wireless optical mouse\"\n    },\n    {\n      \"id\": 101,\n      \"productId\": 789,\n      \"productName\": \"Wireless Mouse\",\n      \"quantity\": 2,\n      \"subtotalPrice\": 51.98,\n      \"unitPrice\": 25.99,\n      \"productDescription\": \"Ergonomic wireless optical mouse\"\n    }\n  ],\n  \"createdAt\": \"2025-05-14T13:45:30\",\n  \"updatedAt\": \"2025-05-14T14:15:22\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "clear Cache",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/cache/clearCache",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cache",
+								"clearCache"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/cache/clearCache",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cache",
+										"clearCache"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080/order-service",
+			"type": "string"
+		}
+	]
+}

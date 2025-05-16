@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.5</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>com.nicolafogliaro</groupId>
+    <artifactId>order-service</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>order-service</name>
+    <description>Test BE Orders Java</description>
+
+    <properties>
+        <java.version>21</java.version>
+        <jakarta.validation-api.version>3.1.1</jakarta.validation-api.version>
+        <springdoc-openapi.version>2.8.6</springdoc-openapi.version>
+        <meilisearch.version>0.14.4</meilisearch.version>
+        <docker.jib-maven-plugin.version>3.4.1</docker.jib-maven-plugin.version>
+        <docker.image.output.dir>docker</docker.image.output.dir><!-- Define the target directory for the Docker image tarball -->
+        <docker.image.tar.name>${project.artifactId}.tar</docker.image.tar.name>
+    </properties>
+
+    <dependencies>
+
+        <!-- Config -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Validation -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+            <version>${jakarta.validation-api.version}</version>
+        </dependency>
+
+        <!-- Core Web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Database - JPA Data -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- Database - MariaDB Client -->
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Database - Migration: Liquibase Core -->
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+        </dependency>
+
+        <!-- Chache - Redis -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <!-- Util - Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Search - MeiliSearch Client -->
+        <!-- https://mvnrepository.com/artifact/com.meilisearch.sdk/meilisearch-java -->
+        <dependency>
+            <groupId>com.meilisearch.sdk</groupId>
+            <artifactId>meilisearch-java</artifactId>
+            <version>${meilisearch.version}</version>
+        </dependency>
+
+        <!-- Testing -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- For more complex async scenarios -->
+        <dependency>
+            <groupId>org.awaitility</groupId>
+            <artifactId>awaitility</artifactId>
+            <version>4.2.0</version> <!-- Check latest version -->
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Monitoring - Actuator (Health checks, metrics, info) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!-- Documentation - OpenAPI UI (for Spring MVC) -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>${springdoc-openapi.version}</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </path>
+                        <path>
+                            <groupId>org.springframework.boot</groupId>
+                            <artifactId>spring-boot-configuration-processor</artifactId>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>${docker.jib-maven-plugin.version}</version>
+                <configuration>
+                    <from>
+                        <image>eclipse-temurin:${java.version}-jre</image>
+                    </from>
+                    <to>
+                        <image>${project.artifactId}:latest</image> <!-- This name is used for the image metadata within the tarball -->
+                        <tags>
+                            <tag>latest</tag> <!-- For easy reference in docker-compose -->
+                        </tags>
+                    </to>
+                    <container>
+                        <!-- Spring Boot specific configurations -->
+                        <ports>
+                            <port>8080</port> <!-- Expose application's port -->
+                        </ports>
+                        <environment>
+                            <!-- DEFAULT VALUES BAKED INTO THE IMAGE -->
+                            <SPRING_DATASOURCE_URL>jdbc:mariadb://db:3306/ordersdb</SPRING_DATASOURCE_URL>
+                            <SPRING_DATASOURCE_USERNAME>ordersapp</SPRING_DATASOURCE_USERNAME>
+                            <SPRING_DATASOURCE_PASSWORD>orderspass</SPRING_DATASOURCE_PASSWORD>
+                            <SPRING_REDIS_HOST>redis</SPRING_REDIS_HOST>
+                            <SPRING_REDIS_PORT>6379</SPRING_REDIS_PORT>
+                            <MEILISEARCH_HOST>http://meilisearch:7700</MEILISEARCH_HOST>
+                        </environment>
+                    </container>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>build-local-docker-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>dockerBuild</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

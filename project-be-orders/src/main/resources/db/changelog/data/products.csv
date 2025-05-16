@@ -1,0 +1,5 @@
+id,name,description,price,stock,version,created_at,updated_at
+1,"Laptop Pro X1","High-performance laptop for professionals",1299.99,50,0,"2025-05-10T10:00:00","2025-05-10T10:00:00"
+2,"Wireless Mouse Ergonomic","Comfortable ergonomic wireless mouse",29.50,150,0,"2025-05-10T10:05:00","2025-05-10T10:05:00"
+3,"Mechanical Keyboard RGB","Gaming mechanical keyboard with RGB lighting",89.75,75,0,"2025-05-10T10:10:00","2025-05-10T10:10:00"
+4,"4K UHD Monitor","27-inch 4K UHD IPS Monitor",349.00,30,0,"2025-05-10T10:15:00","2025-05-10T10:15:00"

@@ -1,0 +1,61 @@
+services:
+  # ---- Database Service ----
+  # The service name (db_service) can be referenced by DB_HOST in .env files
+  # or you can have separate db services for dev/prod if they run simultaneously.
+  # For this example, we use the same service definition, and the .env files
+  # provide distinct DB_NAME, DB_USER, MYSQL_ROOT_PASSWORD.
+  db:
+    image: mariadb:11.4
+    container_name: ${DB_CONTAINER_NAME:-order-service_mariadb} # Default name, can be overridden by .env
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD} # From .env
+      MYSQL_DATABASE: ${DB_NAME}                 # From .env
+      MYSQL_USER: ${DB_USER}                     # From .env
+      MYSQL_PASSWORD: ${DB_PASSWORD}             # From .env
+    ports:
+      # Maps to host port ${DB_HOST_PORT} (from .env) or defaults to 3306
+      - "${DB_HOST_PORT:-3306}:3306"
+    volumes:
+      # Use a named volume for persistent data.
+      # The volume name can be made dynamic if needed via an env var.
+      - order-service_db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "-u${DB_USER}", "-p${DB_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s # Give MariaDB time to initialize
+
+  # ---- Application Service ----
+  app:
+    image: order-service:latest # Uses the Jib-built image (order-service:latest or order-service:0.0.1-SNAPSHOT)
+    container_name: order-service_app
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy # Waits for DB to be healthy
+    ports:
+      # Maps to host port ${APP_HOST_PORT} (from .env) or defaults to SERVER_PORT (from .env), or 8080
+      - "${APP_HOST_PORT:-${SERVER_PORT:-8080}}:${SERVER_PORT:-8080}"
+    environment:
+      # Spring Boot profile is crucial for loading correct application-{profile}.yml
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE} # From .env
+
+      # Database connection details passed to Spring Boot
+      DB_HOST: db # Docker Compose service name for the database
+      DB_PORT: ${DB_PORT} # From .env
+      DB_NAME: ${DB_NAME} # From .env
+      DB_USER: ${DB_USER} # From .env
+      DB_PASSWORD: ${DB_PASSWORD} # From .env
+
+      SERVER_PORT: ${SERVER_PORT:-8080} # Ensures container uses the port defined in .env
+
+      # Optional: JVM options
+      # JAVA_OPTS: "-Xms256m -Xmx512m"
+
+      # Other application-specific environment variables can be added here
+      # SOME_API_KEY: ${SOME_API_KEY}
+
+volumes:
+  order-service_db_data: # Defines the named volume for MariaDB persistence

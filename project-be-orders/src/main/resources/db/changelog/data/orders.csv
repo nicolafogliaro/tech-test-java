@@ -1,0 +1,3 @@
+id,customer_id,order_date,status,total_amount,version,created_at,updated_at
+101,1,"2025-05-10T11:00:00","PENDING",1329.49,0,"2025-05-10T11:00:00","2025-05-10T11:00:00"
+102,2,"2025-05-10T11:30:00","SHIPPED",438.75,0,"2025-05-10T11:30:00","2025-05-10T11:30:00"

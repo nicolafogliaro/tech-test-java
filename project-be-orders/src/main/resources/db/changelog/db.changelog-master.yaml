@@ -1,0 +1,23 @@
+databaseChangeLog:
+
+# NOTE: DO NOT REORDER IN ANY CASE
+
+# Schema Creation Changesets
+  - include:
+      file: db/changelog/changes/001-create-products-table.yaml
+  - include:
+      file: db/changelog/changes/002-create-orders-table.yaml
+  - include:
+      file: db/changelog/changes/003-create-order-items-table.yaml
+
+# Data Loading Changesets (order matters due to foreign keys)
+  - include:
+      file: db/changelog/changes/004-load-products-data.yaml
+  - include:
+      file: db/changelog/changes/005-load-orders-data.yaml
+  - include:
+      file: db/changelog/changes/006-load-order-items-data.yaml
+
+# Utility Changesets (e.g., updating auto-increment counters)
+  - include:
+      file: db/changelog/changes/007-update-auto-increments.yaml

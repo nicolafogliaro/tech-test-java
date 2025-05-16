@@ -1,0 +1,74 @@
+####################################################################################
+# === Name of the microservice
+####################################################################################
+info:
+  app.name: order-service
+  app.capitalizedName: Order Service
+
+spring.application.name: ${info.app.name}
+
+####################################################################################
+# === SERVER - Tomcat
+####################################################################################
+server:
+  servlet:
+    context-path: /${info.app.name}
+
+spring:
+  # --- DATASOURCE (H2 In-Memory for Tests) ---
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE # In-memory H2 database
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+    # Optional: If you want Spring Boot to run schema.sql and data.sql automatically on startup
+    # (This is a global approach, @Sql offers more fine-grained control per test)
+    # initialization-mode: always # or 'embedded'
+
+  # --- JPA / HIBERNATE ---
+  jpa:
+    open-in-view: false
+    database-platform: org.hibernate.dialect.H2Dialect # Dialect for H2
+    hibernate:
+      # 'create-drop': Hibernate creates the schema when the SessionFactory is created and drops it when it's closed.
+      # it ensures a clean state for each test context.
+      ddl-auto: create-drop
+    show-sql: false # Disabled in order to see value binding, see below
+    properties:
+      hibernate:
+        format_sql: true # Pretty print SQL in logs
+        # If you need to initialize with a schema script before Hibernate creates/validates,
+        # you can use this, but 'create-drop' often handles it.
+        # javax.persistence.schema-generation.create-source: metadata # Default
+        # javax.persistence.schema-generation.drop-source: metadata # Default
+        # javax.persistence.schema-generation.create-script-source: "META-INF/create-test-schema.sql" # Example path
+        # javax.persistence.schema-generation.drop-script-source: "META-INF/drop-test-schema.sql" # Example path
+
+  # --- LIQUIBASE (DISABLED FOR TESTS) ---
+  liquibase:
+    enabled: false # Disable Liquibase for this profile
+
+  # --- REDIS (DISABLED FOR TESTS) Disables caching entirely for tests ---
+  cache:
+    type: none # put [simple] ---> for testing caching behavior (to test that your annotations are working) but without Redis, you can use the simple in-memory cache provider ---
+
+# --- LOGGING (Optional, for more detailed logs during tests) ---
+logging:
+  level:
+    org.springframework.jdbc.datasource.init: DEBUG
+    org.springframework.web: DEBUG
+
+# --- QUERY LOGGING ---
+logging.level:
+  # This logger shows the SQL DML statements (with '?')
+  org.hibernate.SQL: DEBUG
+  # This logger shows the actual values bound to the '?' placeholders
+  # This is the primary logger for parameter values.
+  org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+  # This is an alternative/additional logger for parameter binding, especially in newer Hibernate versions.
+  org.hibernate.orm.jdbc.bind: TRACE
+  #
+  org.hibernate.event.internal.DefaultFlushEventListener: DEBUG
+  org.hibernate.engine.internal.Versioning: DEBUG
+
+

@@ -1,1 +1,1 @@
-# tech-test-java
+# technical-test-java

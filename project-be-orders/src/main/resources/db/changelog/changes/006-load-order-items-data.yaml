@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - changeSet:
+      id: 006-load-order-items-data
+      author: nicola
+      comment: "Insert data into order_items table using individual SQL INSERT statements"
+      changes:
+        - sql:
+            # Note: Timestamps are formatted as strings; the database will handle conversion.
+            # Ensure your database column types (e.g., DATETIME or TIMESTAMP) can parse this format.
+            # The 'T' separator in 'YYYY-MM-DDTHH:MM:SS' is standard ISO 8601 and generally works.
+            sql: |
+              INSERT INTO order_items (id, order_id, product_id, quantity, unit_price, created_at, updated_at) VALUES
+              (1, 1, 1, 2, 1299.99, '2025-05-10T11:05:00', '2025-05-10T11:05:00'),
+              (2, 1, 2, 1,   29.50, '2025-05-10T11:10:00', '2025-05-10T11:10:00'),
+              (3, 2, 2, 4,   29.50, '2025-05-10T12:10:00', '2025-05-10T12:10:00');
+            # The 'splitStatements' attribute defaults to true and handles each INSERT if they were separate lines.
+            # For a multi-value INSERT like above, it's treated as a single statement.
+            # endDelimiter can be specified if your statements use something other than ';'
+            # dbms can be used to target specific databases if the SQL is not portable.

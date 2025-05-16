@@ -1,0 +1,40 @@
+services:
+  db:
+    image: mariadb:11.4
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: ordersdb
+      MYSQL_USER: ordersapp
+      MYSQL_PASSWORD: orderspass
+    ports:
+      - "3306:3306"
+    volumes: # Optional: Add a volume to persist database data
+      - db_data:/var/lib/mysql # Ensures MariaDB data persists
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8888:8080" # Access Adminer on http://localhost:8888
+    depends_on:
+      - db
+
+  meilisearch:
+    image: getmeili/meilisearch:v1.12
+    restart: always
+    volumes:
+      - ./data.ms:/data.ms # Persists Meilisearch data
+    ports:
+      - "7700:7700"
+
+  redis:
+    image: redis:7.2.4
+    restart: always
+    ports:
+      - "6379:6379"
+    environment:
+      REDIS_PORT: 6379
+      ALLOW_EMPTY_PASSWORD: "yes" # For dev only! Secure in prod.
+
+volumes: # Define the volume if you added it to the db service
+  db_data:

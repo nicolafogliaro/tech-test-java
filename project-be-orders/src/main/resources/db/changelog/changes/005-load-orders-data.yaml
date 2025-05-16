@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - changeSet:
+      id: 005-load-orders-data # Corrected and unique ID
+      author: nicola
+      changes:
+        # Insert data into the order table
+        - insert:
+            tableName: "orders"
+            columns:
+              - column: { name: "id", valueNumeric: 1 }
+              - column: { name: "customer_id", valueNumeric: 1 }
+              - column: { name: "description", value: "Order Description 1" }
+              - column: { name: "status", value: "PENDING" }
+              - column: { name: "total_amount", valueNumeric: 1928.24 }
+              - column: { name: "created_at", valueDate: "2025-05-10T11:00:00" }
+              - column: { name: "updated_at", valueDate: "2025-05-10T11:00:00" }
+        - insert:
+            tableName: "orders"
+            columns:
+              - column: { name: "id", valueNumeric: 2 }
+              - column: { name: "customer_id", valueNumeric: 2 }
+              - column: { name: "description", value: "Order Description 2" }
+              - column: { name: "status", value: "COMPLETED" }
+              - column: { name: "total_amount", valueNumeric: 29.50 }
+              - column: { name: "created_at", valueDate: "2025-05-10T12:00:00" }
+              - column: { name: "updated_at", valueDate: "2025-05-10T12:00:00" }

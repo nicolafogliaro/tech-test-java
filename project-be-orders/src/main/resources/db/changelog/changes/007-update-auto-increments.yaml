@@ -1,0 +1,52 @@
+databaseChangeLog:
+  - changeSet:
+      id: 007-update-auto-increment-dynamic
+      author: nicola
+      preConditions:
+        onFail: MARK_RAN
+        onError: HALT
+        preConditionLogic: and
+        preConditions:
+          - tableExists:
+              tableName: products
+          - tableExists:
+              tableName: orders
+          - tableExists:
+              tableName: order_items
+      changes:
+
+        ## Update AUTO_INCREMENT for the 'product' table
+        - sql:
+            sql: SET @next_auto_increment_products = (SELECT IFNULL(MAX(id), 0) + 1 FROM products);
+        - sql:
+            sql: SET @alter_sql_products = CONCAT('ALTER TABLE products AUTO_INCREMENT = ', @next_auto_increment_products);
+        - sql:
+            sql: PREPARE stmt_products FROM @alter_sql_products;
+        - sql:
+            sql: EXECUTE stmt_products;
+        - sql:
+            sql: DEALLOCATE PREPARE stmt_products;
+
+        ## Update AUTO_INCREMENT for the orders table
+        - sql:
+            sql: SET @next_auto_increment_order = (SELECT IFNULL(MAX(id), 0) + 1 FROM orders);
+        - sql:
+            sql: SET @alter_sql_order = CONCAT('ALTER TABLE orders AUTO_INCREMENT = ', @next_auto_increment_order);
+        - sql:
+            sql: PREPARE stmt_order FROM @alter_sql_order;
+        - sql:
+            sql: EXECUTE stmt_order;
+        - sql:
+            sql: DEALLOCATE PREPARE stmt_order;
+
+        ## Update AUTO_INCREMENT for the 'order_items' table
+        - sql:
+            sql: SET @next_auto_increment_order_item = (SELECT IFNULL(MAX(id), 0) + 1 FROM order_items);
+        - sql:
+            sql: SET @alter_sql_order_item = CONCAT('ALTER TABLE order_items AUTO_INCREMENT = ', @next_auto_increment_order_item);
+        - sql:
+            sql: PREPARE stmt_order_item FROM @alter_sql_order_item;
+        - sql:
+            sql: EXECUTE stmt_order_item;
+        - sql:
+            sql: DEALLOCATE PREPARE stmt_order_item;

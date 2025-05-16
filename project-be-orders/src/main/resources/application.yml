@@ -1,0 +1,95 @@
+####################################################################################
+# === Name of the microservice
+####################################################################################
+info:
+  app.name: order-service
+  app.capitalizedName: Order Service
+
+spring.application.name: ${info.app.name}
+
+####################################################################################
+# === BANNER -
+####################################################################################
+spring:
+  main:
+    banner-mode: console # or log, ensure it's not 'off'
+
+####################################################################################
+# === SERVER - Tomcat
+####################################################################################
+server:
+  servlet:
+    context-path: /${info.app.name}
+
+######################################################################################
+# === DATABASE - Data Source ===
+######################################################################################
+spring.datasource:
+  url: jdbc:mariadb://localhost:3306/ordersdb
+  username: ordersapp
+  password: orderspass
+  driver-class-name: org.mariadb.jdbc.Driver
+
+######################################################################################
+# === SEARCHING - Meilisearch ===
+######################################################################################
+meilisearch:
+  host: http://localhost:7700
+  api-key: # Leave empty for dev environment
+
+######################################################################################
+# === CACHE: REDIS ===
+######################################################################################
+spring.cache.type: redis
+spring.redis.host: localhost
+spring.redis.port: 6379
+redis:
+  ttl: 3600
+
+######################################################################################
+# === DATABASE - JPA / HIBERNATE CONFIGURATION ===
+######################################################################################
+spring.jpa:
+  open-in-view: false
+  hibernate:
+    # CRITICAL: Use 'validate' or 'none' when Liquibase handles the schema.
+    # 'validate' checks if JPA entities match the DB schema created by Liquibase.
+    # 'none' skips the check.
+    # DO NOT use 'create' or 'create-drop' with Liquibase managing the schema!
+    ddl-auto: validate
+  show-sql: false # Useful for debugging, disable in production if noisy
+  properties:
+    hibernate:
+      format_sql: true
+  #      dialect: org.hibernate.dialect.MariaDBDialect
+
+  ####################################################################################
+  # === DATABASE - MIGRATION - LIQUIBASE
+  ####################################################################################
+  liquibase:
+    enabled: true
+    # The following line is often the default if your master file is at 'classpath:db/changelog/db.changelog-master.yaml'
+    # You can explicitly set it if you choose a different path or name for your master file.
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+
+####################################################################################
+# === LOGGING - LIQUIBASE
+####################################################################################
+logging:
+  level:
+    liquibase: INFO
+
+####################################################################################
+# === MONITORING - Actuator
+####################################################################################
+management:
+  # Disable all Actuator's endpoints by default:
+  endpoints.enabled-by-default: false
+  # Disable Actuator's discovery page:
+  endpoints.web.discovery.enabled: false
+
+####################################################################################
+# === DOCUMENTATION - OpenAPI
+####################################################################################
+springdoc.swagger-ui.enabled: true
+springdoc.api-docs.enabled: true

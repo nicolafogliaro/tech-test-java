@@ -1,0 +1,81 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-products-table
+      author: nicola
+      changes:
+        - createTable:
+            tableName: products
+            remarks: "Table to store product information"
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT UNSIGNED # MariaDB specific for auto_increment primary key
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_product # Optional, but good practice
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: VARCHAR(1024)
+              - column:
+                  name: price # Added price
+                  type: DECIMAL(19, 4)
+                  defaultValueNumeric: 0.0000
+                  constraints:
+                    nullable: false
+              - column:
+                  name: stock
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  # Liquibase defaultValueDate translates to DEFAULT CURRENT_TIMESTAMP
+                  defaultValueDate: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false # Typically, created_at is not null
+              - column:
+                  name: updated_at
+                  # For MariaDB's "DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+                  # we can provide the full type definition.
+                  type: TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false # Typically, updated_at is not null
+
+        - createIndex:
+            indexName: idx_product_name
+            tableName: products
+            columns:
+              - column:
+                  name: name
+            remarks: "Index for searching products by name"
+
+        - createIndex:
+            indexName: idx_product_description
+            tableName: products
+            columns:
+              - column:
+                  name: description
+            remarks: "Index for searching products by description"
+
+        - createIndex:
+            indexName: idx_product_stock
+            tableName: products
+            columns:
+              - column:
+                  name: stock
+            remarks: "Index for querying products by stock availability"
+
+        - createIndex:
+            indexName: idx_product_price # Optional: Index on price
+            tableName: products
+            columns:
+              - column:
+                  name: price

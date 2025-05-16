@@ -1,0 +1,116 @@
+databaseChangeLog:
+  - changeSet:
+      id: 004-load-products-data
+      author: nicola
+      changes:
+        # Insert data into the product table
+        - insert:
+            tableName: products
+            columns:
+              - column: { name: "id", valueNumeric: 1 }
+              - column: { name: "name", value: "iPhone 16 Pro" }
+              - column: { name: "description", value: "Next-gen A18 Bionic chip, 6.1-inch ProMotion XDR display, 256GB, Advanced Triple-Camera System" }
+              - column: { name: "price", valueNumeric: 1299.99 } # Hypothetical price
+              - column: { name: "stock", valueNumeric: 75 }       # Initial stock for a new model
+              - column: { name: "created_at", valueDate: "2025-09-15T09:00:00" } # Hypothetical launch/stocking date
+              - column: { name: "updated_at", valueDate: "2025-09-15T09:00:00" }
+        - insert:
+            tableName: products
+            columns:
+              - column: { name: "id", valueNumeric: 2 }
+              - column: { name: "name", value: "Samsung Galaxy S24 Ultra" }
+              - column: { name: "description", value: "6.8-inch AMOLED display, 256GB storage, 5G" }
+              - column: { name: "price", valueNumeric: 1199.99 }
+              - column: { name: "stock", valueNumeric: 25 }
+              - column: { name: "created_at", valueDate: "2025-05-10T10:15:00" }
+              - column: { name: "updated_at", valueDate: "2025-05-10T10:15:00" }
+        - insert:
+            tableName: products
+            columns:
+              - column: { name: "id", valueNumeric: 3 }
+              - column: { name: "name", value: "Google Pixel 9 Pro" }
+              - column: { name: "description", value: "6.7-inch OLED display, 128GB storage, Android 13" }
+              - column: { name: "price", valueNumeric: 999.99 }
+              - column: { name: "stock", valueNumeric: 20 }
+              - column: { name: "created_at", valueDate: "2025-05-10T10:30:00" }
+              - column: { name: "updated_at", valueDate: "2025-05-10T10:30:00" }
+        - insert:
+            tableName: products
+            columns:
+              - column: { name: "id", valueNumeric: 4 }
+              - column: { name: "name", value: "Unlimited Plan 5G" }
+              - column: { name: "description", value: "Unlimited 5G data, calls, and messages nationwide" }
+              - column: { name: "price", valueNumeric: 69.99 }
+              - column: { name: "stock", valueNumeric: 1000 }
+              - column: { name: "created_at", valueDate: "2025-05-10T10:45:00" }
+              - column: { name: "updated_at", valueDate: "2025-05-10T10:45:00" }
+        - insert:
+            tableName: products
+            columns:
+              - column: { name: "id", valueNumeric: 5 }
+              - column: { name: "name", value: "Family Plan 4G (4 Lines)" }
+              - column: { name: "description", value: "4 lines of unlimited 4G LTE data, calls, messages" }
+              - column: { name: "price", valueNumeric: 149.99 }
+              - column: { name: "stock", valueNumeric: 500 }
+              - column: { name: "created_at", valueDate: "2025-05-10T11:00:00" }
+              - column: { name: "updated_at", valueDate: "2025-05-10T11:00:00" }
+        - insert:
+            tableName: products
+            columns:
+              - column: { name: "id", valueNumeric: 6 }
+              - column: { name: "name", value: "AirPods Pro 2nd Gen" }
+              - column: { name: "description", value: "Active Noise Cancellation, Transparency Mode, Adaptive EQ" }
+              - column: { name: "price", valueNumeric: 249.99 }
+              - column: { name: "stock", valueNumeric: 50 }
+              - column: { name: "created_at", valueDate: "2025-05-10T11:15:00" }
+              - column: { name: "updated_at", valueDate: "2025-05-10T11:15:00" }
+        - insert:
+            tableName: products
+            columns:
+              - column: { name: "id", valueNumeric: 7 }
+              - column: { name: "name", value: "Wireless Charger Stand" }
+              - column: { name: "description", value: "15W fast charging for compatible smartphones and accessories" }
+              - column: { name: "price", valueNumeric: 39.99 }
+              - column: { name: "stock", valueNumeric: 200 }
+              - column: { name: "created_at", valueDate: "2025-05-10T11:30:00" }
+              - column: { name: "updated_at", valueDate: "2025-05-10T11:30:00" }
+        - insert:
+            tableName: products
+            columns:
+              - column: { name: "id", valueNumeric: 8 }
+              - column: { name: "name", value: "Laptop Pro X1" }
+              - column: { name: "description", value: "High-performance laptop for professionals" }
+              - column: { name: "price", valueNumeric: 1299.99 }
+              - column: { name: "stock", valueNumeric: 50 }
+              - column: { name: "created_at", valueDate: "2025-05-10T10:00:00" }
+              - column: { name: "updated_at", valueDate: "2025-05-10T10:00:00" }
+        - insert:
+            tableName: products
+            columns:
+              - column: { name: "id", valueNumeric: 9 }
+              - column: { name: "name", value: "Wireless Mouse Ergonomic" }
+              - column: { name: "description", value: "Comfortable ergonomic wireless mouse" }
+              - column: { name: "price", valueNumeric: 29.50 }
+              - column: { name: "stock", valueNumeric: 150 }
+              - column: { name: "created_at", valueDate: "2025-05-10T10:05:00" }
+              - column: { name: "updated_at", valueDate: "2025-05-10T10:05:00" }
+        - insert:
+            tableName: products
+            columns:
+              - column: { name: "id", valueNumeric: 10 }
+              - column: { name: "name", value: "Mechanical Keyboard RGB" }
+              - column: { name: "description", value: "Gaming mechanical keyboard with RGB lighting" }
+              - column: { name: "price", valueNumeric: 89.75 }
+              - column: { name: "stock", valueNumeric: 75 }
+              - column: { name: "created_at", valueDate: "2025-05-10T10:10:00" }
+              - column: { name: "updated_at", valueDate: "2025-05-10T10:10:00" }
+        - insert:
+            tableName: products
+            columns:
+              - column: { name: "id", valueNumeric: 11 }
+              - column: { name: "name", value: "4K UHD Monitor" }
+              - column: { name: "description", value: "27-inch 4K UHD IPS Monitor" }
+              - column: { name: "price", valueNumeric: 349.00 }
+              - column: { name: "stock", valueNumeric: 30 }
+              - column: { name: "created_at", valueDate: "2025-05-10T10:15:00" }
+              - column: { name: "updated_at", valueDate: "2025-05-10T10:15:00" }
